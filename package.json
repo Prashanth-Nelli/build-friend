@@ -6,6 +6,7 @@
 		"name": "Nelli.Prashanth kumar",
 		"email": "nelli.prashanth1501@gmail.com"
 	},
+	"main":"bin/build-friend.js",
 	"keywords": ["build system", "task", "task runner", "build", "runner"],
 	"repository": {
 		"type": "git",

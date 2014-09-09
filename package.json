@@ -7,7 +7,7 @@
 		"email": "nelli.prashanth1501@gmail.com"
 	},
 	"bin":{
-		"build-friend":"bin/build-friend.js"
+		"build-friend":"./bin/build-friend.js"
 	},
 	"keywords": ["build system", "task", "task runner", "build", "runner"],
 	"repository": {

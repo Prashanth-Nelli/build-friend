@@ -46,37 +46,39 @@ buildfriend.task = function(name, callback) {
 		} else {
 			throw Error('Give proper parameters to task method');
 		}
+		break;
+	default:
+		throw Error('Give proper parameters to task method');
 	}
 
 };
 
 buildfriend.start = function(task) {
-	if(tasks.hasOwnProperty(task)){
+	if (tasks.hasOwnProperty(task)) {
 		walkTree(task);
 		seq.push(task);
 		run(seq);
-	}else{
-		console.log('task '+task+' Not found');
+	} else {
+		console.log('task ' + task + ' Not found');
 	}
 };
 
-
-function walkTree(task){
-  if(tasks[task].deps.length===0){
-    seq.push(task);
-    return task;
-  }else{
-    for(var i=0;i<tasks[task].deps.length;++i){
-      if(tasks[tasks[task].deps[i]].deps.length>0){
-        seq.push(tasks[task].deps[i]);
-      }
-      walkTree(tasks[task].deps[i]);
-    }  
-  }  
+function walkTree(task) {
+	if (tasks[task].deps.length === 0) {
+		seq.push(task);
+		return task;
+	} else {
+		for (var i = 0; i < tasks[task].deps.length; ++i) {
+			if (tasks[tasks[task].deps[i]].deps.length > 0) {
+				seq.push(tasks[task].deps[i]);
+			}
+			walkTree(tasks[task].deps[i]);
+		}
+	}
 }
 
-function run(taskArray){
-	for(var i=0;i<taskArray.length;i++){
+function run(taskArray) {
+	for (var i = 0; i < taskArray.length; i++) {
 		tasks[taskArray[i]].cb();
 	}
 }

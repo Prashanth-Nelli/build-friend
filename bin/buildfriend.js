@@ -13,7 +13,7 @@ if (fs.existsSync(filepath)) {
 	var buildConfig = require(filepath);
 	var buildfriend = require('build-friend');
 	try {
-		buildfriend.run.call(buildfriend, args[0]);
+		buildfriend.start.call(buildfriend, args[0]);
 	} catch(ex) {
 		console.log(ex);
 	}

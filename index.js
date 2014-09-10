@@ -3,7 +3,7 @@
  */
 
 var tasks = {};
-var taskSequence = [];
+var seq = [];
 
 exports = module.exports = buildfriend = {};
 
@@ -50,10 +50,33 @@ buildfriend.task = function(name, callback) {
 
 };
 
-buildfriend.run = function(task) {
+buildfriend.start = function(task) {
 	if(tasks.hasOwnProperty(task)){
-		tasks[task].cb();
+		walkTree(task);
+		seq.push(task);
+		run(seq);
 	}else{
 		console.log('task '+task+' Not found');
 	}
 };
+
+
+function walkTree(task){
+  if(tasks[task].deps.length===0){
+    seq.push(task);
+    return task;
+  }else{
+    for(var i=0;i<tasks[task].deps.length;++i){
+      if(tasks[tasks[task].deps[i]].deps.length>0){
+        seq.push(tasks[task].deps[i]);
+      }
+      walkTree(tasks[task].deps[i]);
+    }  
+  }  
+}
+
+function run(taskArray){
+	for(var i=0;i<taskArray.length;i++){
+		tasks[taskArray[i]].cb();
+	}
+}

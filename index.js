@@ -56,8 +56,10 @@ buildfriend.task = function(name, callback) {
 buildfriend.start = function(task) {
 	if (tasks.hasOwnProperty(task)) {
 		walkTree(task);
-		seq.push(task);
-		run(seq);
+		if (!(tasks[task].deps.length === 0)) {
+			seq.push(task);
+		}
+		run(seq)();
 	} else {
 		console.log('task ' + task + ' Not found');
 	}
@@ -66,6 +68,11 @@ buildfriend.start = function(task) {
 function walkTree(task) {
 	if (tasks[task].deps.length === 0) {
 		seq.push(task);
+		if (seq.length > 1) {
+			var swap = seq[seq.length - 1];
+			seq[seq.length - 1] = seq[seq.length - 2];
+			seq[seq.length - 2] = swap;
+		}
 		return task;
 	} else {
 		for (var i = 0; i < tasks[task].deps.length; ++i) {
@@ -78,7 +85,26 @@ function walkTree(task) {
 }
 
 function run(taskArray) {
-	for (var i = 0; i < taskArray.length; i++) {
-		tasks[taskArray[i]].cb();
+
+	var i = -1, length = taskArray.length;
+	
+	function start() {++i;
+		if (i < length) {
+			var rTask = tasks[taskArray[i]].cb();
+			if ( typeof rTask == 'object') {
+				if ( typeof rTask.on == 'function' && typeof rTask.resume == 'function') {
+					rTask.resume();
+					rTask.on('end', function() {
+						start();
+					});
+				} else {
+					start();
+				}
+			} else {
+				start();
+			}
+		}
 	}
+	return start;
 }
+

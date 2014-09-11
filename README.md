@@ -14,7 +14,7 @@ if you want to install from github run the below command,
 
 ```javascript
 
-// :   npm install -g git+https://github.com/Prashanth-Nelli/build-friend.git
+//   npm install -g git+https://github.com/Prashanth-Nelli/build-friend.git
 
 ```
 

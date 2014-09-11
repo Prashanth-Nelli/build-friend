@@ -2,6 +2,8 @@
  * @author Prashanth.Kumar
  */
 
+var Gaze = require('gaze').Gaze;
+
 var tasks = {};
 var seq = [];
 
@@ -53,6 +55,22 @@ buildfriend.task = function(name, callback) {
 
 };
 
+buildfriend.watch = function(glob, tasklist, cbFunction) {
+
+	if ( typeof glob == 'string' && typeof tasklist == 'object' && typeof cbFunction == 'function' && tasklist.length >= 0) {
+		buildfriend.task('watch', tasklist, function() {
+			var gaze = new Gaze(glob);
+			gaze.on('all',function(event, path) {
+				buildfriend.start('watch');
+				cbFunction(event, path);
+			});
+		});
+	} else {
+		throw Error('Pass proper parameters to watch function');
+	}
+
+}
+
 buildfriend.start = function(task) {
 	if (tasks.hasOwnProperty(task)) {
 		walkTree(task);
@@ -87,7 +105,7 @@ function walkTree(task) {
 function run(taskArray) {
 
 	var i = -1, length = taskArray.length;
-	
+
 	function start() {++i;
 		if (i < length) {
 			var rTask = tasks[taskArray[i]].cb();
@@ -105,6 +123,7 @@ function run(taskArray) {
 			}
 		}
 	}
+
 	return start;
 }
 

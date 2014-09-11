@@ -109,11 +109,19 @@ you should create you tasks in buildfriend.js file
 
 you should run your task using 
 	
-	```javascript buildfriend taskname ```
+	```javascript
+
+		buildfriend taskname 
+	
+	```
 
 not the following
 
-	```javascript build-friend taskname ```
+	```javascript
+	
+		build-friend taskname 
+
+	```
 
 ###Features Planned
 

@@ -119,12 +119,18 @@ buildfriend.watch('./**/*.js',['task1','task2'],function(event,filepath){
 
 ### Running tasks 
 
-```javascript
+```bash
 
-        buildfriend taskname;
-        
-        example:   buildfriend t1;
-                
+   $ buildfriend taskname;
+    
+```
+
+####Example:-
+
+```bash
+
+   $ buildfriend t1;
+
 ```
 
 ### plugin's and other features
@@ -147,17 +153,17 @@ to use buildfriend, create your tasks in buildfriend.js file
 
 you should run your task using 
 	
-```javascript
+```bash
 
-		buildfriend taskname 
+   $ buildfriend taskname 
 	
 ```
 
 not the following
 
-```javascript
+```bash
 	
-		build-friend taskname 
+   $ build-friend taskname 
 
 ```
 

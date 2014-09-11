@@ -11,7 +11,7 @@ A task runner and a build system
 
 ```javascript
 
-npm install -g build-friend
+npm install -g build-friend //i haven't yet published the module.
 
 ```
 

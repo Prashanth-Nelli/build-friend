@@ -3,23 +3,28 @@ build-friend
 
 A task runner and a build system
 
+[![NPM Version](https://img.shields.io/npm/v/build-friend.svg?style=flat)](https://www.npmjs.org/package/build-friend)
+[![Build Status](https://img.shields.io/travis/Prashanth-Nelli/build-friend.svg?style=flat)](https://travis-ci.org/Prashanth-Nelli/build-friend)
+[![Coverage Status](https://coveralls.io/repos/Prashanth-Nelli/build-friend/badge.png)](https://coveralls.io/r/Prashanth-Nelli/build-friend)
+
+
 
 ##Documentation:
 
 
 ###installing buildfriend cli
 
-```javascript
+```bash
 
-npm install -g build-friend
+$ npm install -g build-friend
 
 ```
 
 if you want to install from github run the below command,
 
-```
+```bash
 
-npm install -g git+https://github.com/Prashanth-Nelli/build-friend.git
+$ npm install -g git+https://github.com/Prashanth-Nelli/build-friend.git
 
 ```
 

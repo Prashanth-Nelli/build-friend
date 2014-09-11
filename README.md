@@ -12,7 +12,11 @@ npm install -g build-friend (i haven't yet published the module).
 
 if you want to install from github run the below command,
 
+```javascript
+
 npm install -g git+https://github.com/Prashanth-Nelli/build-friend.git
+
+```
 
 you should have git installed in ur system.
 
@@ -103,15 +107,14 @@ buildfriend.
 
 * you should run your task using 
 	
-	```javascript buildfriend taskname ```
-	
-	not the following
-	
-	```javascript build-friend taskname ```
+```javascript buildfriend taskname ```
+
+not the following
+
+```javascript build-friend taskname ```
 
 ###Features Planned
 
 * adding watch feature to buildfriend
 * plugins support
-* 
 

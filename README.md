@@ -169,5 +169,7 @@ not the following
 
 ###Features Planned
 
-* plugins support
+   plugins support
 
+###LICENSE
+[MIT](LICENSE)

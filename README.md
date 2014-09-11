@@ -87,6 +87,31 @@ buildfriend.task('task1',['task2'],function(){
 
 ```
 
+####Watching for changes and runnig tasks 
+
+watch depends on [gaze](https://github.com/shama/gaze)
+
+check there for the glob patterns supported by gaze 
+
+```javascript
+
+/*you should pass exactly three parameters the first one is glob pattern and the second parameter
+*should be an array of tasks to run on change and the thrid parameter should be a function it will
+*be invoked each time there is an event like file delete,change,creat...*
+*/
+
+buildfriend.watch('./**/*.js',['task1','task2'],function(event,filepath){
+	console.log(event+' ---> '+filepath);
+});
+
+
+/* On every event (like file creation or deletion or updation) tasks are 
+*  run in a sequencial manner like task2 will run after task1's completion
+*/
+
+
+```
+
 ### Running tasks 
 
 ```javascript
@@ -133,6 +158,5 @@ not the following
 
 ###Features Planned
 
-* adding watch feature to buildfriend
 * plugins support
 

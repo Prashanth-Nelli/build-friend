@@ -1,19 +1,25 @@
 build-friend
 ============
 
-a task runner and a build system
+A task runner and a build system
+
 
 ##Documentation:
 
+
 ###installing buildfriend cli
-
-npm install -g build-friend (i haven't yet published the module).
-
-if you want to install from github run the below command,
 
 ```javascript
 
-//   npm install -g git+https://github.com/Prashanth-Nelli/build-friend.git
+npm install -g build-friend //i haven't yet published the module.
+
+```
+
+if you want to install from github run the below command,
+
+```
+
+npm install -g git+https://github.com/Prashanth-Nelli/build-friend.git
 
 ```
 
@@ -85,8 +91,9 @@ buildfriend.task('task1',['task2'],function(){
 
 ```javascript
 
-                buildfriend taskname;
-                buildfriend t1;
+        buildfriend taskname;
+        
+        example:   buildfriend t1;
                 
 ```
 
@@ -102,25 +109,27 @@ buildfriend.
 
 ### Note
 
-you have to use ```javascript require('build-friend') ``` to use buildfriend
+you should require ```build-friend``` 
 
-you should create you tasks in buildfriend.js file 
+``` require('build-friend') ``` 
+
+to use buildfriend, create your tasks in buildfriend.js file 
 
 you should run your task using 
 	
-	```javascript
+```javascript
 
 		buildfriend taskname 
 	
-	```
+```
 
 not the following
 
-	```javascript
+```javascript
 	
 		build-friend taskname 
 
-	```
+```
 
 ###Features Planned
 

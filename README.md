@@ -5,8 +5,6 @@ A task runner and a build system
 
 [![NPM Version](https://img.shields.io/npm/v/build-friend.svg?style=flat)](https://www.npmjs.org/package/build-friend)
 [![Build Status](https://img.shields.io/travis/Prashanth-Nelli/build-friend.svg?style=flat)](https://travis-ci.org/Prashanth-Nelli/build-friend)
-[![Coverage Status](https://coveralls.io/repos/Prashanth-Nelli/build-friend/badge.png)](https://coveralls.io/r/Prashanth-Nelli/build-friend)
-
 
 
 ##Documentation:

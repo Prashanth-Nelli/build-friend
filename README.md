@@ -84,14 +84,16 @@ buildfriend.task('task1',['task2],function(){
 
 ### Running tasks 
 
-command:-   buildfriend taskname;
+```javascript
 
-ex:- 		buildfriend t1;
-
+                buildfriend taskname;
+                buildfriend t1;
+                
+```
 
 ### plugin's and other features
 
-Right buildfriend doesn't have plugins specific to it but you can you gulp plugins 
+Right now buildfriend doesn't have plugins specific to it but you can you gulp plugins 
 
 as shown in the sample buildfriend.js file and there are seperate node modules for
 
@@ -101,17 +103,17 @@ buildfriend.
 
 ### Note
 
-* you have to use ```javascript require('build-friend') ``` to use buildfriend
+you have to use ```javascript require('build-friend') ``` to use buildfriend
 
-* you should create you tasks in buildfriend.js file 
+you should create you tasks in buildfriend.js file 
 
-* you should run your task using 
+you should run your task using 
 	
-```javascript buildfriend taskname ```
+	```javascript buildfriend taskname ```
 
 not the following
 
-```javascript build-friend taskname ```
+	```javascript build-friend taskname ```
 
 ###Features Planned
 

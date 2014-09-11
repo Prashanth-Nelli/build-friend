@@ -14,7 +14,7 @@ if you want to install from github run the below command,
 
 ```javascript
 
-npm install -g git+https://github.com/Prashanth-Nelli/build-friend.git
+// :   npm install -g git+https://github.com/Prashanth-Nelli/build-friend.git
 
 ```
 
@@ -72,7 +72,7 @@ if task1 depends on task2 u should create task like this
  *
  */
 
-buildfriend.task('task1',['task2],function(){
+buildfriend.task('task1',['task2'],function(){
 
 	return {
 		//task code

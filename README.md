@@ -89,7 +89,7 @@ buildfriend.task('task1',['task2'],function(){
 
 ####Watching for changes and runnig tasks 
 
-watch depends on [gaze](https://github.com/shama/gaze)
+buildfriend watch depends on [gaze](https://github.com/shama/gaze)
 
 check there for the glob patterns supported by gaze 
 
@@ -101,7 +101,7 @@ check there for the glob patterns supported by gaze
 */
 
 buildfriend.watch('./**/*.js',['task1','task2'],function(event,filepath){
-	console.log(event+' ---> '+filepath);
+	console.log(event+' '+filepath);
 });
 
 

@@ -39,22 +39,16 @@ var buildfriend = require('build-friend');
 var gulp = require('gulp');
 
 buildfriend.task('run',['t1','t2'],function() {
-	return{
-		console.log('run task is done');
-	} 
+	return console.log('run task is done');
 });
 
 buildfriend.task('t1',function() {
-	return {
-		console.log('t1 task is done');
-	}
+	return console.log('t1 task is done');
 });
 
 
 buildfriend.task('t2',function() {
-	return{
-		 console.log('t2 task is done');
-	}
+	return console.log('t2 task is done');
 });
 
 buildfriend.task('copy',function(){
@@ -82,9 +76,7 @@ if task1 depends on task2 u should create task like this
 
 buildfriend.task('task1',['task2'],function(){
 
-	return {
-		//task code
-	}
+	return (task code)
 
 });
 

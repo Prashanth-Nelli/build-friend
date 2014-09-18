@@ -8,7 +8,7 @@ var resolve = require('resolve');
 var args = process.argv.slice(2);
 var dir = process.cwd();
 
-var filepath = path.join(dir, 'buildfriend.js');
+var filepath = path.join(dir, 'build-friend.js');
 
 if (fs.existsSync(filepath)) {
 	try {
@@ -19,5 +19,5 @@ if (fs.existsSync(filepath)) {
 		console.log(ex);
 	}
 } else {
-	console.log(chalk.red('buildfriend.js file not found in the current directory'));
+	console.log(chalk.red('build-friend.js file not found in the current directory'));
 }

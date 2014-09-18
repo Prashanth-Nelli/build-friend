@@ -30,7 +30,7 @@ $ npm install build-friend
 
 ```
 
-###Sample buildfriend.js 
+###Sample build-friend.js 
 
 This file is just a quick sample to give you a taste of what build-friend does.
 
@@ -70,7 +70,7 @@ if task1 depends on task2 u should create task like this
 ```javascript
 
 /* 
- * you should return some value otherwise buildfriend doesn't know when the task is completed
+ * you should return some value otherwise build-friend doesn't know when the task is completed
  * ,because of that depedencies may run in parallel with actual task,so to avoid that you should 
  *  return a value
  *
@@ -86,7 +86,7 @@ buildfriend.task('task1',['task2'],function(){
 
 ####Watching for changes and runnig tasks 
 
-buildfriend watch depends on [gaze](https://github.com/shama/gaze)
+build-friend watch depends on [gaze](https://github.com/shama/gaze)
 
 check there for the glob patterns supported by gaze 
 
@@ -127,13 +127,13 @@ buildfriend.watch('./**/*.js',['task1','task2'],function(event,filepath){
 
 ### plugin's and other features
 
-Right now buildfriend doesn't have plugins specific to it but you can you gulp plugins 
+Right now build-friend doesn't have plugins specific to it but you can you gulp plugins 
 
-as shown in the sample buildfriend.js file and there are seperate node modules for
+as shown in the sample build-friend.js file and there are seperate node modules for
 
 providing minifying,compressing,jshint,copying,deleting features you can use them along with
 
-buildfriend.
+build-friend.
 
 ### Note
 
@@ -141,7 +141,7 @@ you should require ```build-friend```
 
 ``` require('build-friend') ``` 
 
-to use buildfriend, create your tasks in buildfriend.js file 
+to use build-friend, create your tasks in build-friend.js file 
 
 you should run your task using 
 	

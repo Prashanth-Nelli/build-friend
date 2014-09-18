@@ -1,7 +1,7 @@
 {
   "name": "build-friend",
   "description": "A task runner and a build system",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "author": {
     "name": "Nelli.Prashanth kumar",
     "email": "nelli.prashanth1501@gmail.com"

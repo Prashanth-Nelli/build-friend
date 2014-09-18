@@ -3,6 +3,7 @@
  */
 
 var Gaze = require('gaze').Gaze;
+var chalk = require('chalk');
 
 var tasks = {};
 var seq = [];
@@ -12,20 +13,13 @@ exports = module.exports = buildfriend = {};
 buildfriend.tasks = tasks;
 
 buildfriend.task = function(name, callback) {
-	var args = [], length = 0;
-
-	for (var i = 0; i < arguments.length; i++) {
-		args[i] = arguments[i];
-	}
-
-	length = args.length;
-
-	switch(length) {
+	var args = [].slice.call(arguments, 0);
+	switch(args.length) {
 	case 0:
-		throw Error('task method requires at least two parameters');
+		console.log(chalk.red('task method requires at least two parameters'));
 		break;
 	case 1:
-		throw Error('task method requires at least two parameters');
+		console.log(chalk.red('task method requires at least two parameters'));
 		break;
 	case 2:
 		tasks[name] = {
@@ -35,7 +29,7 @@ buildfriend.task = function(name, callback) {
 		break;
 	case 3:
 		if ( typeof args[0] !== 'string') {
-			throw Error('task should be a string');
+			console.log(chalk.red('task should be a string'));
 		}
 		if ( typeof args[1] == 'object' && typeof args[2] == 'function' && typeof args[1].length !== 'undefined') {
 			tasks[args[0]] = {
@@ -46,44 +40,35 @@ buildfriend.task = function(name, callback) {
 				tasks[args[0]].deps[i] = args[1][i];
 			}
 		} else {
-			throw Error('Give proper parameters to task method');
+			console.log(chalk.red('Give proper parameters to task method'));
 		}
 		break;
 	default:
-		throw Error('Give proper parameters to task method');
+		console.log(chalk.red('Give proper parameters to task method'));
 	}
 
 };
 
 buildfriend.watch = function(glob, tasklist, cbFunction) {
-
-	if ( typeof glob == 'string' && typeof tasklist == 'object' && typeof cbFunction == 'function' && tasklist.length >= 0) {
-		buildfriend.task('watch', tasklist, function() {
-			var gaze = new Gaze(glob);
-			gaze.on('all',function(event, path) {
-				buildfriend.start('watch');
-				cbFunction(event, path);
-			});
-		});
-	} else {
-		throw Error('Pass proper parameters to watch function');
-	}
-
-}
+	buildfriend.task('watch', tasklist, function() {
+		fileWatcher()(cbFunction, tasklist, glob);
+	});
+};
 
 buildfriend.start = function(task) {
+	seq = [];
 	if (tasks.hasOwnProperty(task)) {
-		walkTree(task);
+		walkTree(task, seq);
 		if (!(tasks[task].deps.length === 0)) {
 			seq.push(task);
 		}
 		run(seq)();
 	} else {
-		console.log('task ' + task + ' Not found');
+		console.log(chalk.red('task ' + task + ' Not found'));
 	}
 };
 
-function walkTree(task) {
+function walkTree(task, seq) {
 	if (tasks[task].deps.length === 0) {
 		seq.push(task);
 		if (seq.length > 1) {
@@ -97,28 +82,31 @@ function walkTree(task) {
 			if (tasks[tasks[task].deps[i]].deps.length > 0) {
 				seq.push(tasks[task].deps[i]);
 			}
-			walkTree(tasks[task].deps[i]);
+			walkTree(tasks[task].deps[i], seq);
 		}
 	}
 }
 
 function run(taskArray) {
-
 	var i = -1, length = taskArray.length;
-
+	var pDepTime = (length > 1) ? true : false;
 	function start() {++i;
 		if (i < length) {
+			console.time(chalk.green(taskArray[i] + ' task completed in '));
 			var rTask = tasks[taskArray[i]].cb();
 			if ( typeof rTask == 'object') {
 				if ( typeof rTask.on == 'function' && typeof rTask.resume == 'function') {
 					rTask.resume();
 					rTask.on('end', function() {
+						timerEnd(taskArray[i] + ' task completed in ', pDepTime);
 						start();
 					});
 				} else {
+					timerEnd(taskArray[i] + ' task completed in ', pDepTime);
 					start();
 				}
 			} else {
+				timerEnd(taskArray[i] + ' task completed in ', pDepTime);
 				start();
 			}
 		}
@@ -127,3 +115,46 @@ function run(taskArray) {
 	return start;
 }
 
+function fileWatcher() {
+	function watchdog(cbFunction, tasklist, glob) {
+		if ( typeof glob == 'string' && typeof tasklist == 'object' && typeof cbFunction == 'function' && tasklist.length >= 0) {
+			var gaze = new Gaze(glob);
+			gaze.on('changed', function(filepath) {
+				if (filepath.charAt(filepath.length - 1) !== '~') {
+					gaze.close();
+					buildfriend.start('watch');
+					cbFunction('changed', filepath);
+				}
+			});
+			gaze.on('added', function(filepath) {
+				if (filepath.charAt(filepath.length - 1) !== '~') {
+					gaze.close();
+					buildfriend.start('watch');
+					cbFunction('added', filepath);
+				}
+			});
+			gaze.on('deleted', function(filepath) {
+				if (filepath.charAt(filepath.length - 1) !== '~') {
+					gaze.close();
+					buildfriend.start('watch');
+					cbFunction('deleted', filepath);
+				}
+			});
+			gaze.on('error', function(error) {
+				gaze.close();
+				console.log(chalk.red(error.errno));
+			});
+
+		} else {
+			console.log(chalk.red('Pass proper parameters to watch function'));
+		}
+	}
+
+	return watchdog;
+}
+
+function timerEnd(timerText, condition) {
+	if (condition) {
+		console.timeEnd(chalk.green(timerText));
+	}
+}

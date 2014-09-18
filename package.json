@@ -1,25 +1,32 @@
 {
-	"name": "build-friend",
-	"description": "A task runner and a build system",
-	"version": "0.1.3",
-	"author": {
-		"name": "Nelli.Prashanth kumar",
-		"email": "nelli.prashanth1501@gmail.com"
-	},
-	"bin":{
-		"buildfriend":"./bin/buildfriend.js"
-	},
-	"keywords": ["build system", "task", "task runner", "build", "runner"],
-	"repository": {
-		"type": "git",
-		"url": "git://github.com/Prashanth-Nelli/build-friend"
-	},
-	"license": "MIT",
-	"dependencies": {
-		"gaze":">=0.6.4"
-	},
-	"devDependencies": {},
-	"engines": {
-		"node": ">= 0.10.0"
-	}
+  "name": "build-friend",
+  "description": "A task runner and a build system",
+  "version": "0.1.4",
+  "author": {
+    "name": "Nelli.Prashanth kumar",
+    "email": "nelli.prashanth1501@gmail.com"
+  },
+  "bin": {
+    "buildfriend": "./bin/buildfriend.js"
+  },
+  "keywords": [
+    "build system",
+    "task",
+    "task runner",
+    "build",
+    "runner"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/Prashanth-Nelli/build-friend"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "chalk": "^0.5.1",
+    "gaze": "~0.5.1"
+  },
+  "devDependencies": {},
+  "engines": {
+    "node": ">= 0.10.0"
+  }
 }

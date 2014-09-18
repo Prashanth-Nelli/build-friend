@@ -2,6 +2,7 @@
 
 var fs = require('fs');
 var path = require('path');
+var chalk = require('chalk');
 
 var args = process.argv.slice(2);
 
@@ -18,5 +19,5 @@ if (fs.existsSync(filepath)) {
 		console.log(ex);
 	}
 } else {
-	throw Error('buildfriend.js file not found in the current directory');
+	console.log(chalk.red('buildfriend.js file not found in the current directory'));
 }

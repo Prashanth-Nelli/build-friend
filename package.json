@@ -1,7 +1,7 @@
 {
   "name": "build-friend",
   "description": "A task runner and a build system",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "author": {
     "name": "Nelli.Prashanth kumar",
     "email": "nelli.prashanth1501@gmail.com"
@@ -23,7 +23,8 @@
   "license": "MIT",
   "dependencies": {
     "chalk": "^0.5.1",
-    "gaze": "~0.5.1"
+    "gaze": "~0.5.1",
+    "resolve":"1.0.0"
   },
   "devDependencies": {},
   "engines": {

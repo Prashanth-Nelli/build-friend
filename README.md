@@ -10,7 +10,10 @@ A task runner and a build system
 ##Documentation:
 
 
-###installing buildfriend cli
+###installing build-friend cli creates a command buildfriend you can use this command to run tasks,install build-friend globally
+
+using the following command
+
 
 ```bash
 
@@ -18,15 +21,14 @@ $ npm install -g build-friend
 
 ```
 
-if you want to install from github run the below command,
+build-friend cli requires build-friend module to be installed locally,install build-friend locally using below command
+
 
 ```bash
 
-$ npm install -g git+https://github.com/Prashanth-Nelli/build-friend.git
+$ npm install build-friend
 
 ```
-
-you should have git installed in ur system.
 
 ###Sample buildfriend.js 
 

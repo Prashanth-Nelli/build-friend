@@ -89,7 +89,6 @@ function walkTree(task, seq) {
 
 function run(taskArray) {
 	var i = -1, length = taskArray.length;
-	var pDepTime = (length > 1) ? true : false;
 	function start() {++i;
 		if (i < length) {
 			console.time(chalk.green(taskArray[i] + ' task completed in '));
@@ -98,15 +97,15 @@ function run(taskArray) {
 				if ( typeof rTask.on == 'function' && typeof rTask.resume == 'function') {
 					rTask.resume();
 					rTask.on('end', function() {
-						timerEnd(taskArray[i] + ' task completed in ', pDepTime);
+						console.timeEnd(chalk.green(taskArray[i] + ' task completed in '));
 						start();
 					});
 				} else {
-					timerEnd(taskArray[i] + ' task completed in ', pDepTime);
+					console.timeEnd(chalk.green(taskArray[i] + ' task completed in '));
 					start();
 				}
 			} else {
-				timerEnd(taskArray[i] + ' task completed in ', pDepTime);
+				console.timeEnd(chalk.green(taskArray[i] + ' task completed in '));
 				start();
 			}
 		}
@@ -151,10 +150,4 @@ function fileWatcher() {
 	}
 
 	return watchdog;
-}
-
-function timerEnd(timerText, condition) {
-	if (condition) {
-		console.timeEnd(chalk.green(timerText));
-	}
 }

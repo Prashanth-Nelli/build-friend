@@ -6,11 +6,11 @@ var Gaze = require('gaze').Gaze;
 var chalk = require('chalk');
 
 var tasks = {};
-var seq = [];
 
 exports = module.exports = buildfriend = {};
 
 buildfriend.tasks = tasks;
+buildfriend.seq = [];
 
 buildfriend.task = function(name, callback) {
 	var args = [].slice.call(arguments, 0);
@@ -29,7 +29,7 @@ buildfriend.task = function(name, callback) {
 		break;
 	case 3:
 		if ( typeof args[0] !== 'string') {
-			console.log(chalk.red('task should be a string'));
+			console.log(chalk.red('task name should be a string'));
 		}
 		if ( typeof args[1] == 'object' && typeof args[2] == 'function' && typeof args[1].length !== 'undefined') {
 			tasks[args[0]] = {
@@ -56,19 +56,20 @@ buildfriend.watch = function(glob, tasklist, cbFunction) {
 };
 
 buildfriend.start = function(task) {
-	seq = [];
+	buildfriend.seq = [];
 	if (tasks.hasOwnProperty(task)) {
-		walkTree(task, seq);
+		this.walkTree(task, buildfriend.seq);
 		if (!(tasks[task].deps.length === 0)) {
-			seq.push(task);
+			buildfriend.seq.push(task);
 		}
-		run(seq)();
+		run(buildfriend.seq)();
 	} else {
 		console.log(chalk.red('task ' + task + ' Not found'));
 	}
 };
 
-function walkTree(task, seq) {
+buildfriend.walkTree = function(task, seq) {
+	console.log(task);
 	if (tasks[task].deps.length === 0) {
 		seq.push(task);
 		if (seq.length > 1) {
@@ -82,11 +83,10 @@ function walkTree(task, seq) {
 			if (tasks[tasks[task].deps[i]].deps.length > 0) {
 				seq.push(tasks[task].deps[i]);
 			}
-			walkTree(tasks[task].deps[i], seq);
+			this.walkTree(tasks[task].deps[i], seq);
 		}
 	}
 }
-
 function run(taskArray) {
 	var i = -1, length = taskArray.length;
 	function start() {++i;

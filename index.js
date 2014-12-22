@@ -13,7 +13,9 @@ buildfriend.tasks = tasks;
 buildfriend.seq = [];
 
 buildfriend.task = function(name, callback) {
+
 	var args = [].slice.call(arguments, 0);
+
 	switch(args.length) {
 	case 0:
 		console.log(chalk.red('task method requires at least two parameters'));
@@ -69,7 +71,6 @@ buildfriend.start = function(task) {
 };
 
 buildfriend.walkTree = function(task, seq) {
-	console.log(task);
 	if (tasks[task].deps.length === 0) {
 		seq.push(task);
 		if (seq.length > 1) {

@@ -1,6 +1,8 @@
 build-friend
 ============
 
+[![Join the chat at https://gitter.im/Prashanth-Nelli/build-friend](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/Prashanth-Nelli/build-friend?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 A task runner and a build system
 
 [![NPM Version](https://img.shields.io/npm/v/build-friend.svg?style=flat)](https://www.npmjs.org/package/build-friend)
